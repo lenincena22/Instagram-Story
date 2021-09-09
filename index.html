@@ -1,0 +1,136 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+    <meta charset="utf-8">
+    <title>1-Posts</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500|Roboto:100,400,500,700" rel="stylesheet">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="css/common.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/responsive.css">
+   
+    <head>
+
+    <body>
+        <header>
+            <nav id="navbar">
+                <div class="container">
+                    <div class="logo-area">
+                        <img src="images/logo.png" />
+                    </div>
+                    <ul class="right-nav-icons">
+                        <li>
+                            <img src="images/menuicons/icon-1.png" />
+                        </li>
+                        <li>
+                            <img src="images/menuicons/icon-2.png" />
+                        </li>
+                        <li>
+                            <img src="images/menuicons/icon-3.png" />
+                        </li>
+                    </ul>
+                    <div class="clr"></div>
+                </div>
+            </nav>
+        </header>
+
+        <main class="container">
+            <div class="story" >
+                <div class="story-block">
+                    <div class="story-outer-holder" id="story-preview" onclick="storyPreview()" >
+                        <div class="story-preview-img">
+                            <img src="images/image-1.jpg">
+                        </div>
+                    </div>
+                    <div class="story-text">
+                        <span>#OneplusShot</span>
+                    </div>
+                </div>
+            </div>
+            <div class="posts-wrapper" id="post-data">
+               
+            </div>
+           
+            <div class="clr"></div>
+            <div class="modal" id="myModal">
+               
+            </div>
+        </main>
+        <script>
+        var myPost = [ { "image": "images/image-4.jpg", "likedCount": "10", "caption": "Awesome Day", "youLiked": false, "postedBy":"PriyaBavani", "comment":["cute pic", "Nice!!!","OMG!!!!!!!!!!!!!!!!!!!!"] }, { "image": "images/image-5.jpg", "likedCount": "100", "caption": "HappyTimes", "youLiked": true, "postedBy":"PriyaBavani", "comment":["Where is this place??"] }, { "image": "images/image-6.jpg", "likedCount": "87", "caption": ":-)", "youLiked": false, "postedBy":"PriyaBavani", "comment": ["nice click"] } ]
+            var myObj = []
+           
+            for(var i=0;i<myPost.length;i++){
+                myObj = myPost[i];
+                document.getElementById('post-data').innerHTML += buildPost(myObj);
+            }
+           
+            function buildPost(myObj) {
+                console.log(myObj);
+       
+                var i = a++;
+                var postdata = "";
+                var likeicon ="";
+                var likecount ="";
+               
+                if(myObj.youLiked){
+                    likeicon+='<div class="heart-filled-icon" onclick="change('+i+')"> </div><div class="comment-icon"></div>' ;
+                    likecount+='Liked by <b>You</b> and ' +myObj.likedCount+' others';
+                }else{
+                   likeicon+='<div class="heart-icon" onclick="change('+i+')"></div><div class="comment-icon"></div>';
+                   likecount+=myObj.likedCount +" Likes";
+                   
+                }
+                postdata='<div class="post-item"><div class="posted-by">'+ myObj.postedBy +'</div><img src="'+ myObj.image +'"/><div class="action-block">' + likeicon + '</div><div class="liked-by">' + likecount + '</div><div class="caption"><b>'+myObj.postedBy+'</b> '+myObj.caption+'</div></div>';
+                console.log(document.getElementById("post-data"));
+                return postdata;               
+            }
+           
+            var modal = document.getElementById("myModal");
+            var story = document.getElementById("story-preview");
+            var a = 0;           
+                function storyPreview() {
+                var mycontent = '<div class="modal-content"><div class="postedByHighlight"><div class="preview-holder"><div class="preview-img"><img src="images/image-1.jpg"/></div></div><span>#OneplusShot</span></div><div id="myProgress"><div id="myBar"></div></div><span class="close">&times;</span><div class="story-highlight"><img src="images/image-1.jpg"/></div></div>';
+                document.getElementById("myModal").innerHTML +=mycontent;
+                modal.style.display = "block";
+               
+                setTimeout(function(){
+                modal.style.display = "none";
+                document.getElementById("myModal").innerHTML = " ";
+                },5000);
+                var s = document.getElementsByClassName("close")[0];
+                s.onclick = function() {
+                    modal.style.display = "none";
+                }
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                     modal.style.display = "none";
+                    }
+                }
+               
+                var element = document.getElementById("myBar");
+                var width = 1;
+                var id = setInterval(frame, 50);
+                function frame() {
+                  if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                  } else {
+                    width++;
+                    element.style.width = width + "%";
+                  }
+                }
+            }
+           
+           
+        </script>
+    </body>
+
+</html>
+
+    
+    
